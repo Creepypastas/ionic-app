@@ -145,14 +145,72 @@ angular.module('starter.controllers', [])
     $scope.isExpanded = false;
     $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab('right');
+    $scope.filterHelpTextNeeded = true;
+    $scope.randomCreepypasta = {
+      post_title: 'El Violinista en el Tejado'
+    };
+
+    $scope.input = {
+      search: ''
+    };
 
     $scope.creepypastas = Creepypastas.preloaded();
     $scope.publishedCreepypastas = Creepypastas.published();
     $scope.publishedCreepypastas.then(function (items) {
         $scope.creepypastas = items;
+        setRandomCreepypasta();
     }, function (status) {
         //console.error(status);
     });
+
+    $scope.filterHelpText = {
+      first: function() {
+        if ($scope.input.search.length > 2 && $scope.fClength === 0){
+          return 'Sin resultados.';
+        }
+        switch ($scope.input.search.length) {
+          default:
+            return 'Escribe algo';
+        }
+      },
+      second: function() {
+        if ($scope.input.search.length > 2 && $scope.fClength === 0){
+          return '¿probamos otra búsqueda?';
+        }
+        return 'para buscar.';
+      }
+    };
+
+
+    $scope.filteredCreepypastas = function() {
+      var fC = [];
+      if($scope.input.search.length < 3) {
+        $scope.filterHelpTextNeeded = true;
+        return fC;
+      }
+
+      var currentCreepypastaTitle = '';
+      var query = $scope.input.search.trim().toLowerCase();
+
+      for (var i = 0; i < $scope.creepypastas.length; i++) {
+        currentCreepypastaTitle = $scope.creepypastas[i].post_title.trim().toLowerCase();
+        if (currentCreepypastaTitle.includes(query) ){
+          fC.push($scope.creepypastas[i]);
+        }
+      }
+
+      if (fC.length === 0){
+        $scope.filterHelpTextNeeded = true;
+      }else{
+        $scope.filterHelpTextNeeded = false;
+      }
+      $scope.fClength = fC.length;
+      return fC;
+    };
+
+    var setRandomCreepypasta = function() {
+      $scope.randomCreepypasta = $scope.creepypastas[Math.floor(Math.random() * $scope.creepypastas.length)];
+    };
 
     ionicMaterialInk.displayEffect();
 })

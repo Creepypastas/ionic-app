@@ -1,7 +1,25 @@
 <ion-view view-title="Creepypastas">
   <ion-content ng-class="{expanded:isExpanded}">
+
+    <div class="list list-inset">
+      <label class="item item-input">
+        <i class="icon ion-search placeholder-icon"></i>
+        <input type="text" placeholder="{{randomCreepypasta.post_title}}" ng-model="input.search">
+      </label>
+    </div>
+
+    <div class="item card-item" ng-show="filterHelpTextNeeded">
+        <div class="card stable-bg">
+            <div class="item item-text-wrap item-icon-right">
+                <strong>{{filterHelpText.first()}}</strong>
+                {{filterHelpText.second()}}
+                <i class="icon ion-ios-information muted"></i>
+            </div>
+        </div>
+    </div>
+
     <ion-list>
-      <ion-item class="item item-icon-right" ng-repeat="creepypasta in creepypastas" type="item-text-wrap" href="#/app/post/{{creepypasta.ID}}">
+      <ion-item class="item item-icon-right" ng-repeat="creepypasta in filteredCreepypastas()" type="item-text-wrap" href="#/app/post/{{creepypasta.ID}}">
         <h2>{{creepypasta.post_title}}</h2>
         <p>{{creepypasta.ID}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
