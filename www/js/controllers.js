@@ -139,25 +139,20 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
-.controller('CreepypastasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
+.controller('CreepypastasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Creepypastas) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
     $scope.isExpanded = true;
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab('right');
 
-    $scope.creepypastas = [
-      {post_title: 'El suicidio de Calamardo'},
-      {post_title: 'Jeff the killer'},
-      {post_title: 'Tails doll'},
-      {post_title: 'Luna pálida'},
-      {post_title: 'El usuario g00gle_240394'},
-      {post_title: 'Querida Abby'},
-      {post_title: 'El violinista en el tejado'},
-      {post_title: 'El hombre que canta y baila'},
-      {post_title: 'Ciudad sin luz'},
-      {post_title: 'Psicosis'},
-    ];
+    $scope.creepypastas = Creepypastas.preloaded();
+    $scope.publishedCreepypastas = Creepypastas.published();
+    $scope.publishedCreepypastas.then(function (items) {
+        $scope.creepypastas = items;
+    }, function (status) {
+        //console.error(status);
+    });
 
     $timeout(function() {
         ionicMaterialMotion.fadeSlideIn({
