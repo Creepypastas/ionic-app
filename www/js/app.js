@@ -45,12 +45,8 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
                 controller: 'CreepypastasCtrl'
             },
             'fabContent': {
-                template: '<button id="fab-creepypastas" class="button button-fab button-fab-top-right expanded button-energized-900 flap"><i class="icon ion-ios-book"></i></button>',
-                controller: function ($timeout) {
-                    $timeout(function () {
-                        document.getElementById('fab-creepypastas').classList.toggle('on');
-                    }, 200);
-                }
+                template: '<button id="fab-creepypastas" class="button button-fab button-fab-top-right button-energized-900"><i class="icon ion-ios-book"></i></button>',
+                controller: function () {}
             }
         }
     })

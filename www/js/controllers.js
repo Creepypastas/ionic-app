@@ -142,8 +142,8 @@ angular.module('starter.controllers', [])
 .controller('CreepypastasCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk, Creepypastas) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
-    $scope.isExpanded = true;
-    $scope.$parent.setExpanded(true);
+    $scope.isExpanded = false;
+    $scope.$parent.setExpanded(false);
     $scope.$parent.setHeaderFab('right');
 
     $scope.creepypastas = Creepypastas.preloaded();
@@ -154,13 +154,6 @@ angular.module('starter.controllers', [])
         //console.error(status);
     });
 
-    $timeout(function() {
-        ionicMaterialMotion.fadeSlideIn({
-            selector: '.animate-fade-slide-in .item'
-        });
-    }, 200);
-
-    // Activate ink for controller
     ionicMaterialInk.displayEffect();
 })
 
@@ -171,11 +164,16 @@ angular.module('starter.controllers', [])
   $scope.$parent.setExpanded(false);
   $scope.creepypasta = Creepypastas.get($stateParams.creepypastaID);
 
+  $ionicLoading.show({
+      template: '<div class="loader"><svg class="circular"><circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/></svg></div>'
+  });
+
   Creepypastas.getSinglePost($stateParams.creepypastaID)
       .then(function (response) {
           var post_content_br = nl2br(response.data.post_content);
           response.data.post_content = $sce.trustAsHtml(post_content_br);
           $scope.creepypasta = response.data;
+          $ionicLoading.hide();
       }, function (error) {
           $scope.status = 'Unable to load customer data: ' + error.message;
       });
