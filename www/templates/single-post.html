@@ -1,0 +1,15 @@
+<ion-view view-title="CREEPYPASTAS.COM">
+  <ion-content ng-class="{expanded:isExpanded}">
+    <div>
+      <div class="im-wrapper stable-bg">
+        <article>
+          <h4>
+                <i class="icon ion-ios-book"></i>
+                {{creepypasta.post_title}}
+            </h4>
+          <div class="border-top" ng-bind-html="creepypasta.post_content"></div>
+        </article>
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

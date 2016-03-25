@@ -55,6 +55,21 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services', '
         }
     })
 
+    .state('app.post', {
+        url: '/post/:creepypastaID',
+        views: {
+            'menuContent': {
+                templateUrl: 'templates/single-post.html',
+                controller: 'SinglePostCtrl'
+            },
+            'fabContent': {
+                template: '',
+                controller: function ($timeout) {
+                }
+            }
+        }
+    })
+
     .state('app.activity', {
         url: '/activity',
         views: {

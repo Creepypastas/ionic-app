@@ -164,6 +164,25 @@ angular.module('starter.controllers', [])
     ionicMaterialInk.displayEffect();
 })
 
+.controller('SinglePostCtrl', function($scope, $sce, $stateParams, $timeout, $ionicLoading, ionicMaterialMotion, ionicMaterialInk, Creepypastas) {
+  $scope.$parent.showHeader();
+  $scope.$parent.clearFabs();
+  $scope.isExpanded = false;
+  $scope.$parent.setExpanded(false);
+  $scope.creepypasta = Creepypastas.get($stateParams.creepypastaID);
+
+  Creepypastas.getSinglePost($stateParams.creepypastaID)
+      .then(function (response) {
+          var post_content_br = nl2br(response.data.post_content);
+          response.data.post_content = $sce.trustAsHtml(post_content_br);
+          $scope.creepypasta = response.data;
+      }, function (error) {
+          $scope.status = 'Unable to load customer data: ' + error.message;
+      });
+
+  ionicMaterialInk.displayEffect();
+})
+
 .controller('ActivityCtrl', function($scope, $stateParams, $timeout, ionicMaterialMotion, ionicMaterialInk) {
     $scope.$parent.showHeader();
     $scope.$parent.clearFabs();
