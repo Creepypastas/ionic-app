@@ -1,19 +1,11 @@
 <ion-view view-title="Creepypastas">
-    <ion-content ng-class="{expanded:isExpanded}">
-        <div ng-repeat="creepypasta in creepypastas" class="item card-item">
-            <div ui-sref="app.gallery" class="card stable-bg ink ink-dark">
-                <div class="item item-text-wrap" ng-class="{'item-avatar':creepypasta.avatar}">
-                    <span ng-show="creepypasta.avatar" class="avatar" style="background-image: url('img/jon-snow.jpg');"></span>
-                    <strong>{{creepypasta.post_title}}</strong>
-                    <div class="card-footer text-right">
-                        <i class="icon ion-chatbubbles positive"></i> 6
-                        <i class="icon ion-heart assertive"></i> 23
-                        <div class="pull-left">
-                            <i class="icon ion-clock"></i> just now
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </ion-content>
+  <ion-content ng-class="{expanded:isExpanded}">
+    <ion-list>
+      <ion-item class="item item-icon-right" ng-repeat="creepypasta in creepypastas" type="item-text-wrap" href="#/app/post/{{creepypasta.ID}}">
+        <h2>{{creepypasta.post_title}}</h2>
+        <p>{{creepypasta.ID}}</p>
+        <i class="icon ion-chevron-right icon-accessory"></i>
+      </ion-item>
+    </ion-list>
+  </ion-content>
 </ion-view>
