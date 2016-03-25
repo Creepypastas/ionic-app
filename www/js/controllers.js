@@ -146,6 +146,19 @@ angular.module('starter.controllers', [])
     $scope.$parent.setExpanded(true);
     $scope.$parent.setHeaderFab('right');
 
+    $scope.creepypastas = [
+      {post_title: 'El suicidio de Calamardo'},
+      {post_title: 'Jeff the killer'},
+      {post_title: 'Tails doll'},
+      {post_title: 'Luna pálida'},
+      {post_title: 'El usuario g00gle_240394'},
+      {post_title: 'Querida Abby'},
+      {post_title: 'El violinista en el tejado'},
+      {post_title: 'El hombre que canta y baila'},
+      {post_title: 'Ciudad sin luz'},
+      {post_title: 'Psicosis'},
+    ];
+
     $timeout(function() {
         ionicMaterialMotion.fadeSlideIn({
             selector: '.animate-fade-slide-in .item'
