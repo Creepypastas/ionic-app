@@ -190,10 +190,10 @@ angular.module('starter.controllers', [])
       }
 
       var currentCreepypastaTitle = '';
-      var query = $scope.input.search.trim().toLowerCase();
+      var query = $scope.input.search.replace(/[_\W]/g, '').toLowerCase();
 
       for (var i = 0; i < $scope.creepypastas.length; i++) {
-        currentCreepypastaTitle = $scope.creepypastas[i].post_title.trim().toLowerCase();
+        currentCreepypastaTitle = $scope.creepypastas[i].post_title.replace(/[_\W]/g, '').toLowerCase();
         if (currentCreepypastaTitle.includes(query) ){
           fC.push($scope.creepypastas[i]);
         }
@@ -210,6 +210,8 @@ angular.module('starter.controllers', [])
 
     var setRandomCreepypasta = function() {
       $scope.randomCreepypasta = $scope.creepypastas[Math.floor(Math.random() * $scope.creepypastas.length)];
+
+      $scope.input.search = $scope.randomCreepypasta.post_title.trim().substring(0, 3);
     };
 
     ionicMaterialInk.displayEffect();
