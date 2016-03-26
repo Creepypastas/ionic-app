@@ -11,6 +11,9 @@
   <access origin="*"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
   <allow-navigation href="*" />
+  <preference name="android-build-tool" value="gradle" />
+  <gap:plugin name="cordova-plugin-admobpro" source="npm" />
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
