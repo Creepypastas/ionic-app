@@ -1,16 +1,20 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="com.ionicframework.sample374926" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
-  <name>sample</name>
+<widget id="com.creepypastas.beta" version="0.11.33" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+  <name>Creepypastas</name>
   <description>
-        An Ionic Framework and Cordova project.
-    </description>
-  <author email="hi@ionicframework" href="http://ionicframework.com/">
-      Ionic Framework Team
-    </author>
+    Las actualizaciones de creepypastas.com en tu smartphone.
+  </description>
+  <author email="contacto@creepypastas.com" href="https://creepypastas.com">
+    Creepypastas.com
+  </author>
+  <icon src="www/img/s.1024.png" />
   <content src="index.html"/>
   <access origin="*"/>
   <gap:plugin name="cordova-plugin-whitelist" source="npm" />
   <allow-navigation href="*" />
+  <preference name="android-build-tool" value="gradle" />
+  <gap:plugin name="cordova-plugin-admobpro" source="npm" />
+
   <preference name="webviewbounce" value="false"/>
   <preference name="UIWebViewBounce" value="false"/>
   <preference name="DisallowOverscroll" value="true"/>
