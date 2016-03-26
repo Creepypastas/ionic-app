@@ -210,6 +210,8 @@ angular.module('starter.controllers', [])
 
     var setRandomCreepypasta = function() {
       $scope.randomCreepypasta = $scope.creepypastas[Math.floor(Math.random() * $scope.creepypastas.length)];
+
+      $scope.input.search = $scope.randomCreepypasta.post_title.trim().substring(0, 3);
     };
 
     ionicMaterialInk.displayEffect();
