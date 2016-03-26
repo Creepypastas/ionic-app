@@ -231,6 +231,7 @@ angular.module('starter.controllers', [])
   Creepypastas.getSinglePost($stateParams.creepypastaID)
       .then(function (response) {
           var post_content_br = nl2br(response.data.post_content);
+          post_content_br = post_content_br.replace(/<a\b[^>]*>/gi,"").replace(/<\/a>/gi, "");
           response.data.post_content = $sce.trustAsHtml(post_content_br);
           $scope.creepypasta = response.data;
           $ionicLoading.hide();
