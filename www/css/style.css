@@ -77,3 +77,17 @@ p {
     position: fixed;
     bottom: 0;
 }
+
+/* Simple custom colors
+==================================*/
+.article-dark, .article-dark p{
+  color: #ccc;
+}
+
+.article-dark-title{
+  color: #BB2020;
+}
+
+.bg-dark{
+  background: #292929 !important;
+}
