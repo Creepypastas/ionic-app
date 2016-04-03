@@ -150,14 +150,19 @@ angular.module('starter.controllers', [])
       post_title: 'El Violinista en el Tejado'
     };
 
+    $scope.creepypastas = {
+      all : [],
+      filtered : []
+    };
+
     $scope.input = {
       search: ''
     };
 
-    $scope.creepypastas = Creepypastas.preloaded();
+    $scope.creepypastas.all = Creepypastas.preloaded();
     $scope.publishedCreepypastas = Creepypastas.published();
     $scope.publishedCreepypastas.then(function (items) {
-        $scope.creepypastas = items;
+        $scope.creepypastas.all = items;
         setRandomCreepypasta();
     }, function (status) {
         //console.error(status);
@@ -182,20 +187,20 @@ angular.module('starter.controllers', [])
     };
 
 
-    $scope.filteredCreepypastas = function() {
+    $scope.filterCreepypastas = function() {
       var fC = [];
       if($scope.input.search.length < 3) {
         $scope.filterHelpTextNeeded = true;
-        return fC;
+        $scope.creepypastas.filtered = [];
       }
 
       var currentCreepypastaTitle = '';
       var query = $scope.input.search.replace(/[_\W]/g, '').toLowerCase();
 
-      for (var i = 0; i < $scope.creepypastas.length; i++) {
-        currentCreepypastaTitle = $scope.creepypastas[i].post_title.replace(/[_\W]/g, '').toLowerCase();
+      for (var i = 0; i < $scope.creepypastas.all.length; i++) {
+        currentCreepypastaTitle = $scope.creepypastas.all[i].post_title.replace(/[_\W]/g, '').toLowerCase();
         if (currentCreepypastaTitle.includes(query) ){
-          fC.push($scope.creepypastas[i]);
+          fC.push($scope.creepypastas.all[i]);
         }
       }
 
@@ -205,13 +210,13 @@ angular.module('starter.controllers', [])
         $scope.filterHelpTextNeeded = false;
       }
       $scope.fClength = fC.length;
-      return fC;
+      $scope.creepypastas.filtered = fC;
     };
 
     var setRandomCreepypasta = function() {
-      $scope.randomCreepypasta = $scope.creepypastas[Math.floor(Math.random() * $scope.creepypastas.length)];
-
+      $scope.randomCreepypasta = $scope.creepypastas.all[Math.floor(Math.random() * $scope.creepypastas.all.length)];
       $scope.input.search = $scope.randomCreepypasta.post_title.trim().substring(0, 3);
+      $scope.filterCreepypastas();
     };
 
     ionicMaterialInk.displayEffect();
