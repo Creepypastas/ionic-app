@@ -19,7 +19,7 @@
     </div>
 
     <ion-list>
-      <ion-item class="item item-icon-right" ng-repeat="creepypasta in filteredCreepypastas()" type="item-text-wrap" href="#/app/post/{{creepypasta.ID}}">
+      <ion-item class="item item-icon-right" ng-repeat="creepypasta in $parent.filteredCreepypastas()" type="item-text-wrap" href="#/app/post/{{creepypasta.ID}}">
         <h2>{{creepypasta.post_title}}</h2>
         <p>{{creepypasta.ID}}</p>
         <i class="icon ion-chevron-right icon-accessory"></i>
