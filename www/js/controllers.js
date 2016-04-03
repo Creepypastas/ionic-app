@@ -175,7 +175,7 @@ angular.module('starter.controllers', [])
         }
         switch ($scope.input.search.length) {
           default:
-            return 'Escribe algo';
+            return 'Escribe 3 letras o más';
         }
       },
       second: function() {
@@ -192,6 +192,7 @@ angular.module('starter.controllers', [])
       if($scope.input.search.length < 3) {
         $scope.filterHelpTextNeeded = true;
         $scope.creepypastas.filtered = [];
+        return;
       }
 
       var currentCreepypastaTitle = '';
