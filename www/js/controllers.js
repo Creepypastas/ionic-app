@@ -156,7 +156,7 @@ angular.module('starter.controllers', [])
     };
 
     $scope.input = {
-      search: ''
+      search: 'Slenderman'
     };
 
     $scope.creepypastas.all = Creepypastas.preloaded();
@@ -199,7 +199,7 @@ angular.module('starter.controllers', [])
 
       for (var i = 0; i < $scope.creepypastas.all.length; i++) {
         currentCreepypastaTitle = $scope.creepypastas.all[i].post_title.replace(/[_\W]/g, '').toLowerCase();
-        if (currentCreepypastaTitle.includes(query) ){
+        if (currentCreepypastaTitle.indexOf(query) !== -1 ){
           fC.push($scope.creepypastas.all[i]);
         }
       }
@@ -215,7 +215,7 @@ angular.module('starter.controllers', [])
 
     var setRandomCreepypasta = function() {
       $scope.randomCreepypasta = $scope.creepypastas.all[Math.floor(Math.random() * $scope.creepypastas.all.length)];
-      $scope.input.search = $scope.randomCreepypasta.post_title.trim().substring(0, 3);
+      $scope.input.search = $scope.randomCreepypasta.post_title.trim().substring(0, 5);
       $scope.filterCreepypastas();
     };
 
